@@ -10,7 +10,7 @@ const postCssPlugin = [
     require('autoprefixer')({
         browsers: [
             'last 3 versions',
-            'android 6'
+            'android 4.2'
         ]
     })
 ];
@@ -36,15 +36,18 @@ module.exports = {
             },
             {
                 test: /\.p?css$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader']
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: postCssPlugin
+                        }
+                    }
+                ]
             }
         ]
-    },
-    plugins: [
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: postCssPlugin
-            }
-        })
-    ]
+    }
 };

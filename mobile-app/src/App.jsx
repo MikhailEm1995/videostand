@@ -1,18 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Tab } from 'semantic-ui-react';
 
 import Gallery from './screens/Gallery/Gallery.jsx';
 import Pinterest from './screens/Pinterest/Pinterest.jsx';
 
+import './styles/index.pcss';
+
 export default class App extends React.Component {
+    panes = [
+        { menuItem: 'ГАЛЕРЕЯ', render: () => <Tab.Pane><Gallery/></Tab.Pane> },
+        { menuItem: 'PINTEREST', render: () => <Tab.Pane><Pinterest/></Tab.Pane> }
+    ];
+
     render() {
         return (
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" component={ Gallery } />
-                    <Route path="/pinterest" component={ Pinterest } />
-                </Switch>
-            </BrowserRouter>
+            <Tab panes={ this.panes } />
         );
     }
 }

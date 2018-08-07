@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Loader, Segment } from 'semantic-ui-react';
+
 import ButtonChooseFile from '../../../components/Button/ChooseFile/ButtonChooseFile.jsx';
 import ImagePreview from '../../../components/Image/Preview/ImagePreveiw.jsx';
 
@@ -7,11 +9,20 @@ import './ContainerImagesPreview.pcss';
 
 export default class ContainerImagesPreview extends React.Component {
     state = {
-        images: []
+        images: [],
+        isReading: false
     };
 
-    handleFileChoose = e => {
-        this.getFilesURLs(e.target.files).then(images => this.setState({ images }));
+    handleFileChoose = async (e) => {
+        try {
+            this.setState({ isReading: true });
+
+            const images = await this.getFilesURLs(e.target.files);
+
+            (images => this.setState({ images, isReading: false }))(images);
+        } catch(err) {
+            this.setState({ isReading: false });
+        }
     };
 
     getFilesURLs = files => {
@@ -61,11 +72,14 @@ export default class ContainerImagesPreview extends React.Component {
 
     render() {
         const Preview = this.Preview;
+        const { isReading, images } = this.state;
 
         return (
             <div className="upload-container">
                 <ButtonChooseFile icon="image" text="Добавить изображения" onChoose={ this.handleFileChoose } />
-                { this.state.images.length !== 0 && <Preview /> }
+                <Segment padded={ isReading ? "very" : true } loading={ isReading }>
+                    { images.length === 0 ? 'Изображения не выбраны' : <Preview /> }
+                </Segment>
             </div>
         );
     }

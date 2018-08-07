@@ -17,6 +17,7 @@ const postCssPlugin = [
 
 module.exports = {
     entry: [
+        'babel-polyfill',
         path.resolve(__dirname, '../index.js')
     ],
     output: {

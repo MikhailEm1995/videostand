@@ -10,9 +10,7 @@ export const notificationsReducer = (state = initState, action) => {
             return { ...state, messages: state.messages.concat([action.payload]) };
         }
         case DELETE_NOTIFICATION: {
-            const id = action.payload;
-
-            return { ...state, messages: state.messages.slice(0, id).concat(state.messages.slice(id+1)) };
+            return { ...state, messages: state.messages.filter(({ id }) =>  id !== action.id ) };
         }
         default: return state;
     }

@@ -7,7 +7,9 @@ const initState = {
 export const notificationsReducer = (state = initState, action) => {
     switch (action.type) {
         case SET_NOTIFICATION: {
-            return { ...state, messages: state.messages.concat([action.payload]) };
+            const message = { id: new Date().getTime(), ...action.message };
+
+            return { ...state, messages: [message].concat(state.messages) };
         }
         case DELETE_NOTIFICATION: {
             return { ...state, messages: state.messages.filter(({ id }) =>  id !== action.id ) };

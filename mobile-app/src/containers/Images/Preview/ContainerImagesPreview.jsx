@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Loader, Segment } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 
 import ButtonChooseFile from '../../../components/Button/ChooseFile/ButtonChooseFile.jsx';
 import ImagePreview from '../../../components/Image/Preview/ImagePreveiw.jsx';

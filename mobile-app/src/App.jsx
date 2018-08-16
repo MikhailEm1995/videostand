@@ -4,6 +4,8 @@ import { Tab } from 'semantic-ui-react';
 import Gallery from './screens/Gallery/Gallery.jsx';
 import Pinterest from './screens/Pinterest/Pinterest.jsx';
 
+import ContainerNotifications from './containers/Notifications/ContainerNotifications.jsx';
+
 import './styles/index.pcss';
 
 export default class App extends React.Component {
@@ -14,7 +16,10 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <Tab panes={ this.panes } />
+            <div>
+                <Tab panes={ this.panes } />
+                <ContainerNotifications />
+            </div>
         );
     }
 }

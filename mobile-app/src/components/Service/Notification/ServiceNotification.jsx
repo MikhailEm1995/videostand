@@ -18,10 +18,10 @@ export default class ServiceNotification extends React.Component {
 
     _types = {
         'message': { color: 'grey', prefix: ''},
-        'info': { color: 'blue', prefix: 'INFO' },
-        'warning': { color: 'yellow', prefix: 'WARNING' },
-        'error': { color: 'red', prefix: 'ERROR' },
-        'success': { color: 'green', prefix: 'SUCCESS' }
+        'info': { color: 'blue', prefix: 'ПОЛЕЗНО' },
+        'warning': { color: 'yellow', prefix: 'ОСТОРОЖНО' },
+        'error': { color: 'red', prefix: 'ОШИБКА' },
+        'success': { color: 'green', prefix: 'УСПЕХ' }
     };
 
     render() {

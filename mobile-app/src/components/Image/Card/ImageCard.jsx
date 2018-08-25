@@ -1,32 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Item } from 'semantic-ui-react';
 
 import './ImageCard.pcss';
 
+import propTypesImageCard from '../../../constants/propTypesImageCard.js';
+
 export default class ImageCard extends React.Component {
-    static propTypes = {
-        src: PropTypes.string.isRequired,
-        duration: PropTypes.string.isRequired,
-        name: PropTypes.string,
-        desc: PropTypes.string
-    };
+    static propTypes = propTypesImageCard;
 
     static defaultProps = {
-        name: 'Без названия',
-        desc: ''
+        title: 'Без названия',
+        desc: 'Нет описания'
     };
 
     render() {
-        const { src, name, desc, duration } = this.props;
+        const { src, title, desc, duration } = this.props;
 
         return (
             <Item class="image-card">
                 <Item.Image size="small" src={ src } className="image-card__img"/>
 
                 <Item.Content className="image-card__content">
-                    <Item.Header className="image-card__header">{ name }</Item.Header>
+                    <Item.Header className="image-card__header">{ title }</Item.Header>
                     <Item.Meta className="image-card__duration">{ `Продолжительность: ${duration}` }</Item.Meta>
                     <Item.Description className="image-card__desc">{ desc }</Item.Description>
                 </Item.Content>

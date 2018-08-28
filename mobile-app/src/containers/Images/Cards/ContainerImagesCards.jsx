@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Segment, Item } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 
 import ImageCard from '../../../components/Image/Card/ImageCard.jsx';
 

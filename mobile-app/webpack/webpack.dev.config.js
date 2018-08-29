@@ -24,6 +24,11 @@ module.exports = {
         path: parentDir + '/dist',
         filename: 'bundle.js'
     },
+    watch: true,
+    watchOptions: {
+      aggregateTimeout: 2000,
+      ignored: /node_modules/
+    },
     devServer: {
         contentBase: parentDir,
         historyApiFallback: true,

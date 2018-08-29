@@ -1,3 +1,47 @@
-.image-card {
+@import '../../../constants/styles/colors.pcss';
+@import '../../../constants/styles/sizes.pcss';
+@import '../../../constants/styles/text.pcss';
 
+.image-card {
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 4px;
+
+    background-color: white;
+    border-bottom: 1px solid $grey-light;
+
+    &__img-wrapper {
+        display: inline-flex;
+        align-items: center;
+
+        height: 100px;
+        width: 100px;
+
+        background-color: black;
+
+        overflow: hidden;
+    }
+
+    &__img {
+        width: 100%;
+    }
+
+    &__info {
+        padding: $list-item-padding;
+    }
+
+    &__title {
+        font: $h6;
+        margin: 0;
+    }
+
+    &__duration {
+        font: $extra;
+        color: $grey;
+    }
+
+    &__desc {
+        font: $paragraph;
+    }
 }

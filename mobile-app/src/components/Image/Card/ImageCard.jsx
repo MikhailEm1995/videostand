@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Item } from 'semantic-ui-react';
-
 import './ImageCard.pcss';
 
 import propTypesImageCard from '../../../constants/propTypesImageCard.js';
@@ -18,15 +16,18 @@ export default class ImageCard extends React.Component {
         const { src, title, desc, duration } = this.props;
 
         return (
-            <Item class="image-card">
-                <Item.Image size="small" src={ src } className="image-card__img"/>
+            <div className="image-card">
+                <div className="image-card__img-wrapper">
+                    <img src={ src } className="image-card__img" />
+                </div>
 
-                <Item.Content className="image-card__content">
-                    <Item.Header className="image-card__header">{ title }</Item.Header>
-                    <Item.Meta className="image-card__duration">{ `Продолжительность: ${duration}` }</Item.Meta>
-                    <Item.Description className="image-card__desc">{ desc }</Item.Description>
-                </Item.Content>
-            </Item>
+                <div className="image-card__info">
+                    <h6 className="image-card__title">{ title }</h6>
+                    <span className="image-card__duration">{ `Продолжительность: ${ duration }` }</span>
+                    <p className="image-card__desc">{ desc }</p>
+                    <span className="image-card__type"></span>
+                </div>
+            </div>
         );
     }
 }

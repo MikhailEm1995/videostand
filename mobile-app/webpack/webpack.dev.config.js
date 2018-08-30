@@ -16,45 +16,49 @@ const postCssPlugin = [
 ];
 
 module.exports = {
-    entry: [
-        'babel-polyfill',
-        path.resolve(__dirname, '../index.js')
-    ],
-    output: {
-        path: parentDir + '/dist',
-        filename: 'bundle.js'
-    },
-    watch: true,
-    watchOptions: {
-      aggregateTimeout: 2000,
-      ignored: /node_modules/
-    },
-    devServer: {
-        contentBase: parentDir,
-        historyApiFallback: true,
-    },
-    devtool: 'inline-source-map',
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            },
-            {
-                test: /\.p?css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: postCssPlugin
-                        }
-                    }
-                ]
+  entry: [
+    'babel-polyfill',
+    path.resolve(__dirname, '../index.js')
+  ],
+  output: {
+    path: parentDir + '/dist',
+    filename: 'bundle.js'
+  },
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 2000,
+    ignored: /node_modules/
+  },
+  devServer: {
+    contentBase: parentDir,
+    historyApiFallback: true,
+    compress: true,
+    hot: true,
+    progress: true,
+    port: 8080
+  },
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.p?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: postCssPlugin
             }
+          }
         ]
-    }
+      }
+    ]
+  }
 };

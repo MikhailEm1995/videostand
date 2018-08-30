@@ -33,7 +33,6 @@ module.exports = {
     contentBase: parentDir,
     historyApiFallback: true,
     compress: true,
-    hot: true,
     progress: true,
     port: 8080,
     watchOptions: {

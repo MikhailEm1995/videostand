@@ -16,7 +16,9 @@ import propTypesImageCard from '../../../constants/propTypesImageCard.js';
 
 class ContainerImagesCards extends React.Component {
     static propTypes = {
-        cardsList: PropTypes.arrayOf(propTypesImageCard).isRequired,
+        cardsList: PropTypes.arrayOf(
+            PropTypes.shape(propTypesImageCard)
+        ).isRequired,
         setImagesOrder: PropTypes.func.isRequired
     };
 
@@ -53,6 +55,7 @@ class ContainerImagesCards extends React.Component {
                                                     title={ card.title }
                                                     desc={ card.desc }
                                                     duration={ card.duration }
+                                                    type={ card.type }
                                                 />
                                             </div>
                                         )}

@@ -1,5 +1,7 @@
 import { SET_IMAGES_ORDER_REQUEST, SET_IMAGES_ORDER_SUCCESS, SET_IMAGES_ORDER_FAILURE } from '../types/images';
 
+import { VIDEO } from "../constants/propTypesImageCard";
+
 const initState = {
     fromServer: [
         {
@@ -9,7 +11,8 @@ const initState = {
         {
             src: 'https://picsum.photos/300',
             duration: '00:01:28',
-            title: 'Test'
+            title: 'Test',
+            type: VIDEO
         },
         {
             src: 'https://picsum.photos/300',

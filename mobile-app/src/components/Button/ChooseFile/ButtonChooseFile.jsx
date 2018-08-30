@@ -6,7 +6,7 @@ import { Icon } from 'semantic-ui-react';
 import './ButtonChooseFile.pcss';
 
 export default class ButtonChooseFile extends React.Component {
-    propTypes = {
+    static propTypes = {
         icon: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
         onChoose: PropTypes.func.isRequired

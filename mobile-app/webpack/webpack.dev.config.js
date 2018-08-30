@@ -35,9 +35,17 @@ module.exports = {
     compress: true,
     hot: true,
     progress: true,
-    port: 8080
+    port: 8080,
+    watchOptions: {
+      aggregateTimeout: 2000,
+      ignored: /node_modules/
+    }
   },
-  devtool: 'inline-source-map',
+  devtool: 'cheap-eval-source-map',
+  optimization: {
+    noEmitOnErrors: true,
+    namedModules: true
+  },
   module: {
     rules: [
       {

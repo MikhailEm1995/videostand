@@ -6,7 +6,7 @@ import { Icon } from 'semantic-ui-react';
 import './ImagePreview.pcss';
 
 export default class ImagePreview extends React.Component {
-    propTypes = {
+    static propTypes = {
         src: PropTypes.string.isRequired,
         onDelete: PropTypes.func.isRequired
     };

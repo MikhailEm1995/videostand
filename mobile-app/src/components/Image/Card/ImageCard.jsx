@@ -17,8 +17,6 @@ export default class ImageCard extends React.Component {
     render() {
         const { src, title, desc, duration, type } = this.props;
 
-        console.log(type);
-
         return (
             <div className="image-card">
                 <div className="image-card__img-wrapper">

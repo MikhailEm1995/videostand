@@ -1,8 +1,36 @@
 .image-social-card {
     height: 100px;
+    width: 100px;
 
-    &__loader {
-        height: 100%;
-        width: 100%;
+    &__loader-bg {
+      width: 100%;
+      height: 100%;
+
+      background-color: #ccc;
+      background-image:
+        linear-gradient(100deg, #ccc 5%, #ddd 15%, #ccc 20%);
+      background-repeat: no-repeat;
+      background-size: 500px;
+
+      animation: blink 1.5s ease-out infinite;
     }
+
+    &__loader-img {
+      height: 100%;
+      width: 100%;
+
+      background: url('./picture.svg') no-repeat center;
+      background-size: 70%;
+
+      opacity: .7;
+    }
+}
+
+@keyframes blink {
+  from {
+   background-position-x: -100px;
+  }
+  to {
+    background-position-x: 100px;
+  }
 }

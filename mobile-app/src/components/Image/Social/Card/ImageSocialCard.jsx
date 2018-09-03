@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Image } from 'semantic-ui-react';
 
 import './ImageSocialCard.pcss';
-import picture from './picture.svg';
 
 export default class ImageSocialCard extends React.Component {
   static propTypes = {
@@ -24,8 +23,8 @@ export default class ImageSocialCard extends React.Component {
       <div className="image-social-card">
         {
           (isLoading || src === '#') ?
-            <div className="image-social-card__loader">
-              <img src={picture} alt="Нет изображения" className="image-social-card__loader-img" />
+            <div className="image-social-card__loader-bg">
+              <div className="image-social-card__loader-img" />
             </div>
             : <Image src={this.props.src} verticalAlign="middle" />
         }

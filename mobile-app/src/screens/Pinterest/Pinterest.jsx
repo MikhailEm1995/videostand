@@ -5,7 +5,9 @@ import SocialAuth, { socialAuthTypes } from '../../components/Social/Auth/Social
 export default class Pinterest extends React.Component {
     render() {
         return (
-          <SocialAuth type={socialAuthTypes.PINTEREST} />
+          <div>
+              <SocialAuth type={socialAuthTypes.PINTEREST} />
+          </div>
         );
     }
 }

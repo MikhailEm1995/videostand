@@ -6,7 +6,7 @@ info:
   contact:
     email: "mikhail.emchenko@gmail.com"
 host: "localhost:8080"
-basePath: "/"
+basePath: "/api/"
 schemes:
 - "https"
 - "http"

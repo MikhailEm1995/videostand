@@ -1,8 +1,6 @@
 import * as express from 'express';
 import {Router: IRouter, RouterConfig, RouteHandling, Route} from '../interfaces/Router';
 
-declare function require(path: string): any;
-
 export default class Router implement IRouter {
   private router: express.Router;
   private config: RouterConfig;
@@ -76,8 +74,7 @@ export default class Router implement IRouter {
 
   private setRouteIfHandlerDefined(method: string, endpoint: string): IRouter {
     const routeHandling: RouteHandling = this.config[method][endpoint];
-    const handlerPath: string = routeHandling.handler;
-    const handler: Function = this.requireHandler(handlerPath);
+    const handler: Function = routeHandling.handler;
 
     if (handler === undefined && typeof handler === 'function') return this;
 
@@ -92,10 +89,6 @@ export default class Router implement IRouter {
     this.router[method](endpoint, ...middlewares, handler);
 
     return this;
-  }
-
-  private requireHandler(path: string): Function {
-    return require(path);
   }
 
   public getRouter(): express.Router {

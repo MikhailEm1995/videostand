@@ -1,0 +1,198 @@
+swagger: "2.0"
+info:
+  description: "An application to watch for videostand state and upload pictures"
+  version: "0.0.1"
+  title: "Videostand Watcher App"
+  contact:
+    email: "mikhail.emchenko@gmail.com"
+host: "localhost:8080"
+basePath: "/"
+schemes:
+- "https"
+- "http"
+paths:
+  /pictures:
+    get:
+      tags:
+      - "/pictures"
+      summary: "Get list of pictures from a videostand"
+      description: ""
+      operationId: "getPictures"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Picture"
+        204:
+          description: "No content"
+        403:
+          description: "Authorization required"
+    post:
+      tags:
+      - "/pictures"
+      summary: "Upload new pictures"
+      description: ""
+      operationId: "uploadPictures"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pictures object"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            pictures:
+              type: "array"
+              items:
+                $ref: "#/definitions/Picture"
+      responses:
+        200:
+          description: "OK"
+          schema:
+           type: "array"
+           items:
+            $ref: "#/definitions/Picture"
+        400:
+          description: "Body doesn't match schema"
+        403:
+          description: "Authrization required"
+    put:
+      tags:
+      - "/pictures"
+      summary: "Update a picture's description"
+      description: ""
+      operationId: "updatePicDescr"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        description: ""
+        required: true
+        schema:
+          type: "object"
+          properties:
+            pictures:
+              type: "array"
+              items:
+                $ref: "#/definitions/Picture"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Picture"
+        400:
+          description: "Body doesn't match schema"
+        403:
+          description: "Authorization required"
+    delete:
+      tags:
+      - "/pictures"
+      summary: "Delete pictures"
+      description: ""
+      operationId: "deletePictures"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "IDs"
+        in: "body"
+        description: "Pictures IDs to delete"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            ids:
+              type: "array"
+              items:
+                type: "integer"
+                format: "int64"
+      responses:
+        203:
+          description: "Deleted pictures IDs array"
+          schema:
+            type: "array"
+            items:
+              type: "integer"
+        403:
+          description: "No such IDs"
+  /pictures/order:
+    put:
+      tags:
+        - "/pictures"
+      summary: "Change pictures order"
+      description: ""
+      operationId: "reorderPictures"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        description: "Pictures new order"
+        required: true
+        schema:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              id:
+                type: "integer"
+                format: "int64"
+                description: "Picture ID"
+              order:
+                type: "integer"
+                format: "int64"
+                description: "Picture order"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                  format: "int64"
+                order:
+                  type: "integer"
+                  format: "int64"
+
+definitions:
+  Picture:
+    type: "object"
+    required:
+    - "id"
+    - "imgURI"
+    - "type"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      duration:
+        type: "number"
+        format: "int64"
+        description: "milliseconds"
+      imgURI:
+        type: "string"
+      type:
+        type: "string"
+        enum:
+          - "picture"
+          - "video"
+      order:
+        type: "integer"
+        format: "int64"
+      isActive:
+        type: "boolean"

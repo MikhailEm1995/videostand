@@ -26,7 +26,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Picture"
+              $ref: "#/definitions/Media"
         204:
           description: "No content"
         403:
@@ -52,14 +52,14 @@ paths:
             pictures:
               type: "array"
               items:
-                $ref: "#/definitions/Picture"
+                $ref: "#/definitions/Media"
       responses:
         200:
           description: "OK"
           schema:
            type: "array"
            items:
-            $ref: "#/definitions/Picture"
+            $ref: "#/definitions/Media"
         400:
           description: "Body doesn't match schema"
         403:
@@ -83,12 +83,12 @@ paths:
             pictures:
               type: "array"
               items:
-                $ref: "#/definitions/Picture"
+                $ref: "#/definitions/Media"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/Picture"
+            $ref: "#/definitions/Media"
         400:
           description: "Body doesn't match schema"
         403:
@@ -166,7 +166,7 @@ paths:
                   format: "int64"
 
 definitions:
-  Picture:
+  Media:
     type: "object"
     required:
     - "id"
@@ -186,6 +186,7 @@ definitions:
         description: "milliseconds"
       imgURI:
         type: "string"
+        description: "Filename"
       type:
         type: "string"
         enum:
@@ -194,5 +195,7 @@ definitions:
       order:
         type: "integer"
         format: "int64"
+        description: "Order number in list of media elements"
       isActive:
         type: "boolean"
+        description: "Tells is picture shown on a videostand"

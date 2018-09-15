@@ -1,7 +1,7 @@
 import * as express from 'express';
-import {Router: IRouter, RouterConfig, RouteHandling, Route} from '../interfaces/Router';
+import {IRouter, RouterConfig, RouteHandling, Route} from '../types/Router';
 
-export default class Router implement IRouter {
+export default class Router implements IRouter {
   private router: express.Router;
   private config: RouterConfig;
 

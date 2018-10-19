@@ -2,11 +2,15 @@ const { DBConnector } = require('../DBConnector/index');
 const { TABLES } = require('../../constants/db');
 
 module.exports = class MediaHandler {
-    getAllUserMedias(user_id) {
+    constructor() {
+      super(DBConnector);
+    }
+
+    getAllUserMedias(userId) {
         const query = 'SELECT * FROM ?.? WHERE user_id=?';
 
         return new Promise((resolve, reject) => {
-            this.connection.query(query, [user_id, this.db, TABLES.MEDIA], (err, result) => {
+            this.connection.query(query, [userId, this.db, TABLES.MEDIA], (err, result) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -16,7 +20,7 @@ module.exports = class MediaHandler {
         });
     }
 
-    updateMedia(media_id, media_info) {
+    updateMedia(mediaId, mediaInfo) {
         return new Promise((resolve, reject) => {
           resolve([]);
         });

@@ -1,14 +1,11 @@
-import * as mysql from 'mysql';
+const mysql = require('mysql');
+const { DB_HOST, DB_NAME, DB_PASSWORD, DB_USERNAME } = require('../../constants/db');
 
-import { IDBConnector } from "../../types/DBConnector/index";
+module.exports = class DBConnector {
+    db = null;
+    connection = null;
 
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USERNAME } from "../../constants/db";
-
-export class DBConnector implements IDBConnector {
-    private db: string;
-    private connection: any;
-
-    connect(): DBConnector {
+    connect() {
         this.db = DB_NAME;
         this.connection = mysql.createConnection({
            host: DB_HOST,

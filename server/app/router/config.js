@@ -1,23 +1,21 @@
-import * as path from 'path';
-import * as express from 'express';
+const path = require('path');
+const express = require('express');
 
-import { API } from '../configuration/app-configuration.ts';
+const { API } = require('../configuration/app-configuration.js');
 
-declare function require(path: string): any;
+const HANDLERS_PATH = '../routesHandlers/';
 
-const HANDLERS_PATH = './handlers/';
-
-const getHandler: Function = (file: string) => {
+const getHandler = (file) => {
     const handlerPath = getPath(`${HANDLERS_PATH}${file}`);
 
     return require(handlerPath);
 };
 
-const getPath: string = (file: string) => {
+const getPath = (file) => {
   return path.resolve(__dirname, file);
 };
 
-export default {
+module.exports = {
   'get': {
     [`${API}/pictures`]: {
       handler: getHandler('getPictures'),

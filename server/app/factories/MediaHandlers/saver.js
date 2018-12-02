@@ -1,4 +1,4 @@
-const mediaHandler = require('./common');
+const mediaHandler = require('./_common');
 
 const MediaSaver = () => mediaHandler({
   saveMedia({

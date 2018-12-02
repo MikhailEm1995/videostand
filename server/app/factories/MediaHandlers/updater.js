@@ -1,7 +1,4 @@
-const Sequelize = require('sequelize');
 const mediaHandler = require('./_common');
-
-const Or = Sequelize.Op;
 
 const MediaUpdater = () => mediaHandler({
   updateMediaInfo({ media_id, media_info }) {

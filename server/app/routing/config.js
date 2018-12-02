@@ -23,11 +23,14 @@ const configureMethod = route => handlerName => (middlewares = []) => ({
 const picturesRoute = configureMethod('pictures');
 
 module.exports = {
-  'get': picturesRoute('getPictures')(),
+  'get': {
+    ...picturesRoute('getPictures')(),
+    ...configureMethod('test')('test')()
+  },
   'post': picturesRoute('postPictures')([express.json()]),
   'put': {
     ...picturesRoute('putPictures')([express.json()]),
     ...configureMethod('pictures/order')('putPicturesOrder')([express.json()])
   },
-  'delete': picturesRoute('deletePictures')('deletePictures')([express.json()])
+  'delete': picturesRoute('deletePictures')([express.json()])
 };

@@ -1,21 +1,29 @@
-const mysql = require('mysql');
-const { makeMixin } = require('../../../utils/objectCreation.js');
+const Sequelize = require('sequelize');
+const { makeMixin } = require('../../../../utils/objectCreation.js');
+const { DEV, PROD } = require('../../constants/db.js');
+
+const sequelize = new Sequelize(
+  DEV.DB_NAME, DEV.DB_USERNAME, DEV.DB_PASSWORD, {
+    host: DEV.DB_HOST,
+    dialect: 'mysql',
+    operatorsAliases: false,
+
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  }
+);
+
+sequelize.authenticate();
 
 const DBConnector = () => {
-  let db;
-  let connection;
+  const db = DEV.DB_NAME;
+  const connection = sequelize;
 
   return {
-    connect({ DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD }) {
-      db = DB_NAME;
-      connection = mysql.createConnection({
-        host: DB_HOST,
-        username: DB_USERNAME,
-        password: DB_PASSWORD,
-        multipleStatements: true
-      });
-      return this;
-    },
     getDB() {
       return db;
     },
@@ -23,8 +31,7 @@ const DBConnector = () => {
       return connection;
     },
     killConnection() {
-      connection.end();
-      connection = null;
+      connection.close();
       return this;
     }
   };

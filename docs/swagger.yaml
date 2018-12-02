@@ -184,9 +184,6 @@ definitions:
         type: "number"
         format: "int64"
         description: "milliseconds"
-      imgURI:
-        type: "string"
-        description: "Filename"
       type:
         type: "string"
         enum:
